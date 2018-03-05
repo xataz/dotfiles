@@ -7,6 +7,7 @@ CONFIG_FILE="${HOME_PATH}/.config/polybar \
             ${HOME_PATH}/.config/i3 \
             ${HOME_PATH}/.config/rofi \
             ${HOME_PATH}/.config/termite \
+            ${HOME_PATH}/.i3/scripts \
             ${HOME_PATH}/.i3/wallpaper.jpg \
             ${HOME_PATH}/.gnupg/gpg.conf \
             ${HOME_PATH}/.vim/vimrc"
