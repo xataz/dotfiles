@@ -19,6 +19,7 @@
 * trizen
 * nextcloud-client
 * keybase
+* font-awesome 5
 
 ## Manual
 * oh-my-zsh

@@ -114,7 +114,7 @@ exec = ~/.config/polybar/scripts/checkupdates.sh
 exec-if = sudo trizen -Sy
 interval = 3600
 
-format-prefix = " "
+; format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 
