@@ -165,17 +165,27 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 
 
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
 for_window [class=".*"] border pixel 2
 gaps inner 10
 smart_gaps on
 smart_borders on
 
+exec_always --no-startup-id "~/.config/i3/scripts/screen.sh"
 exec --no-startup-id compton
 exec --no-startup-id "export KEYBASE_START_UI=hideWindow; run_keybase"
 exec --no-startup-id "nextcloud"
-exec --no-startup-id "feh --bg-scale ~/.i3/wallpaper.jpg"
-
-exec_always --no-startup-id "~/.i3/scripts/screen.sh"
+exec --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper.jpg"
+exec --no-startup-id "eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) && export SSH_AUTH_SOCK"
 
 
 # Move windows

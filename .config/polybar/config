@@ -21,7 +21,7 @@ alert = #bd2c40
 power = #dd0000
 
 [bar/default]
-monitor = ${env:MONITOR:DisplayPort-2}
+monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -54,7 +54,7 @@ font-5 = "Font Awesome 5 Brands:pixelsize=9;1"
 
 modules-left = i3
 modules-center = date 
-modules-right = volume powermenu 
+modules-right = spotify updates xbacklight volume battery powermenu 
 
 tray-position = right
 tray-padding = 0
@@ -74,6 +74,60 @@ tray-background = #0063ff
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground}
+animation-charging-framerate = 750
+
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/checkupdates.sh
+; Add 'NOPASSWD: /bin/trizen -Sy' on sudoers.conf
+exec-if = sudo trizen -Sy
+interval = 3600
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.primary}
+
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/scripts/spotify.sh get
+exec-if = ~/.config/polybar/scripts/spotify.sh status
+interval = 1
+
+format-underline = ${colors.primary}
+click-left = playerctl -p spotify play-pause
+
 
 [module/xwindow]
 type = internal/xwindow
@@ -176,9 +230,10 @@ label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 label-volume-underline = ${colors.primary}
 
-format-muted-prefix = "Muted"
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground}
-label-muted = " "
+format-muted-underline = ${colors.primary}
+label-muted = "Muted"
 
 ramp-volume-3 = " "
 ramp-volume-2 = " "
@@ -186,6 +241,19 @@ ramp-volume-1 = " "
 ramp-volume-0 = " "
 
 ramp-volume-underline = ${colors.primary}
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <ramp><label>
+format-underline = ${colors.primary}
+
+ramp-0 = "🌕 "
+ramp-1 = "🌔 "
+ramp-2 = "🌓 "
+ramp-3 = "🌒 "
+ramp-4 = "🌑 "
+
 [module/powermenu]
 type = custom/menu
 label-active-font = 1
