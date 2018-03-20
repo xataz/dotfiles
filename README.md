@@ -12,6 +12,8 @@
 * gnome-keyring (libsecret, libgnome-keyring)
 * playerctl
 * dunst
+* python-dbus
+* upower
 
 ## AUR
 * polybar
@@ -20,6 +22,7 @@
 * nextcloud-client
 * keybase
 * font-awesome 5
+* i3lock-fancy
 
 ## Manual
 * oh-my-zsh
