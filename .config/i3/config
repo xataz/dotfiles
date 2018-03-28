@@ -127,7 +127,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/powermenu.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -162,8 +163,8 @@ bindsym $mod+r mode "resize"
 bindsym $mod+l exec --no-startup-id i3lock-fancy
 
 # Print
-bindsym Print exec scrot "/home/xataz/Images/screenshot/screenshot_%Y%m%d-%H%M.png"
-bindsym --release $mod+Print exec scrot -s "/home/xataz/Images/screenshot/screenshot_%Y%m%d-%H%M.png"
+bindsym --release Print exec scrot "/home/xataz/Images/Screenshots/screenshot_%Y%m%d-%H%M.png"
+bindsym --release $mod+Print exec scrot -s "/home/xataz/Images/Screenshots/screenshot_%Y%m%d-%H%M.png"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -178,20 +179,18 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym XF86KbdBrightnessUp exec ~/.config/i3/scripts/kbdbacklight.py + 1
 bindsym XF86KbdBrightnessDown exec ~/.config/i3/scripts/kbdbacklight.py - 1
 
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 3
 gaps inner 15
-smart_gaps on
-smart_borders on
+#smart_gaps on
+#smart_borders on
 
-exec_always --no-startup-id "killall polybar; polybar -r default"
+exec_always --no-startup-id "killall polybar; polybar -r desktop"
 exec_always --no-startup-id "killall dunst; dunst"
-exec_always --no-startup-id "killall nm-applet; nm-applet"
 exec --no-startup-id compton
 exec --no-startup-id "export KEYBASE_START_UI=hideWindow; run_keybase"
 exec --no-startup-id "nextcloud"
 exec --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper.jpg"
 exec --no-startup-id "eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) && export SSH_AUTH_SOCK"
-
 
 # Move windows
 ## Workspace 1 (Internet)
@@ -216,6 +215,7 @@ assign [class="vlc"] 5
 
 ## Workspace 6 (Files)
 assign [class="Nemo"] 6
+assign [class="Thunar"] 6
 
 ## Workspace 7 (Chat)
 assign [class="Keybase"] 7
@@ -230,10 +230,12 @@ assign [class="Veracrypt"] 9
 
 ## Workspace 10 (Games)
 assign [class="Steam"] 10
+assign [class="Mainwindow.py" title="PlayOnLinux"] 10
+
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffb52a #636363 #ffffff #2e9ef4   #ffb52a
+client.focused          #5294e2 #636363 #ffffff #5294e2   #5294e2
 client.focused_inactive #444444 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.urgent           #2f343a #000000 #ffffff #000000   #000000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c

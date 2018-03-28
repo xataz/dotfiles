@@ -1,53 +1,51 @@
-" mode avancé activé
 set nocompatible
 filetype off
 
-" numérotation des lignes
+""""" Start Plugin """""
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'fatih/vim-go'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'chr4/nginx.vim'
+
+call vundle#end()
+filetype plugin indent on
+"""""""""""""""""""""""""
+
+""""" For lightline """""
+set laststatus=2
+set noshowmode
+if !has('gui_running')
+  set t_Co=256
+endif
+"""""""""""""""""""""""""
+
+
 set number
-
-" coloration automatique
 syntax on
-
-" touche leader (= la virgule)
-" cela ne sert pas ici, je le
-" laisse pour mémoire
 let mapleader=","
-
-" on désactive le retour à la ligne
 set nowrap
-
-" indentation de 4 espaces, y compris pour 'tab'
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set softtabstop=4
-
-" on rétabli le fonctionnement 'normal' de 'backspace'
 set backspace=indent,eol,start
-
-" indentation automatique
-" set autoindent
-
-" recherche sans respecter la casse
 set ignorecase
-" recherche en rotation (on revient au début du fichier à la fin)
 set incsearch
-" surbrillance du terme recherché
 set hlsearch
-" on désactive la surbrillance (virgule + espace)
 nmap <silent> <leader><space> :noh<CR>
-
-" pas de backup, fichier temp, etc
 set nobackup
 set nowritebackup
 set noswapfile
-
-" pas d'alerte
 set novisualbell
 set noerrorbells
 
-" utiliser les onglets (F7 = précédent, F8 = suivant)
-" ouvrir un nouvel onglet = ':tabedit {fichier}'
 nmap <F7> :tabprevious <CR>
 nmap <F8> :tabnext <CR>
 map <F7> :tabprevious <CR>

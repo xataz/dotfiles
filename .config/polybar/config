@@ -8,70 +8,78 @@
 ;=====================================================
 
 [colors]
-background = #444
-background-alt = #444
+background = #bb383C4A
+background-alt = #111111
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
-power = #dd0000
+primary = #5294e2
 
-[bar/default]
-monitor = ${env:MONITOR:eDP1}
+[bar/desktop]
+monitor = ${env:MONITOR:DisplayPort-2}
 width = 100%
 height = 25
-;offset-x = 1%
-;offset-y = 1%
 radius = 0
-fixed-center = false
-
+fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
-
 line-size = 3
-line-color = #f00
-
+line-color = 
 border-size = 0
-border-color = #00636363
-
+border-color =
 padding-left = 0
 padding-right = 2
-
 module-margin-left = 1
 module-margin-right = 2
-
 font-0 = DejaVu Sans:size=9
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=9;1
 font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=9;1"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=9;1"
-
 modules-left = i3
-modules-center =  
-modules-right = spotify updates xbacklight volume battery date powermenu 
+modules-center =  date 
+modules-right = spotify updates volume nextcloud keybase network
+tray-position =
+tray-padding = 5
+tray-transparent = true
+tray-background = ${colors.background}
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+cursor-click = pointer
+cursor-scroll = ns-resize
 
-tray-position = right
+[bar/laptop]
+monitor = ${env:MONITOR:eDP1}
+width = 100%
+height = 25
+radius = 0
+fixed-center = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+border-size = 0
+border-color =
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+font-0 = DejaVu Sans:size=9
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=9;1
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=9;1"
+font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
+font-5 = "Font Awesome 5 Brands:pixelsize=9;1"
+modules-left = i3
+modules-center =  date 
+modules-right = spotify updates xbacklight volume battery nextcloud keybase network
+tray-position =
 tray-padding = 5
 tray-transparent = false
 tray-background = ${colors.background}
 tray-detached = false
-;tray-maxsize = 22
 tray-offset-x = 0
 tray-offset-y = 0
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskpRev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
@@ -83,12 +91,12 @@ adapter = AC0
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.primary}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = 
+format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 ramp-capacity-0 = 
@@ -107,43 +115,9 @@ animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
 
-[module/updates]
-type = custom/script
-exec = ~/.config/polybar/scripts/checkupdates.sh
-; Add 'NOPASSWD: /bin/trizen -Sy' on sudoers.conf
-exec-if = sudo trizen -Sy
-interval = 3600
-
-; format-prefix = " "
-; format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.primary}
-
-
-[module/spotify]
-type = custom/script
-exec = ~/.config/polybar/scripts/spotify.sh get
-exec-if = ~/.config/polybar/scripts/spotify.sh status
-interval = 1
-
-format-underline = ${colors.primary}
-click-left = playerctl -p spotify play-pause
-
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-mount-1 = /home
-
-label-mounted = %mountpoint% : %percentage_used%%
-label-mounted-underline = ${colors.primary}
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/i3]
 type = internal/i3
@@ -160,7 +134,7 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index% %icon%
-label-focused-background = ${colors.background}
+label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 
@@ -190,33 +164,14 @@ ws-icon-7 = 8;
 ws-icon-8 = 9;
 ws-icon-9 = 10;
 
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-;format-prefix = " "
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.primary}
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-;format-prefix = " "
-format-prefix = "MEM "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.primary}
-label = %percentage_used%%
-
 [module/date]
 type = internal/date
 interval = 5
 
-date-alt = " %a %d %b %Y "
-date = 
+date-alt = 
+date = " %a %d %b %Y "
 
-time = " %H:%M"
+time = "  %H:%M"
 time-alt =
 
 ;format-prefix = 
@@ -259,28 +214,6 @@ ramp-2 = "🌓 "
 ramp-3 = "🌒 "
 ramp-4 = "🌑 "
 
-[module/powermenu]
-type = custom/menu
-label-active-font = 1
-format-spacing = 1
-label-open = 
-;label-open = poweroff
-label-open-foreground = ${colors.primary}
-label-close = 
-label-close-foreground = ${colors.primary}
-label-separator = |
-label-separator-foreground = ${colors.primary}
-
-menu-0-0 = 
-menu-0-0-foreground = ${colors.foreground}
-menu-0-0-exec = reboot
-menu-0-1 = 
-menu-0-1-foreground = ${colors.foreground}
-menu-0-1-exec = poweroff
-menu-0-2 = 
-menu-0-2-foregrount = ${colors.foreground}
-menu-0-2-exec = i3-msg exit
-
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -292,4 +225,49 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
+; Custom module
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/checkupdates.sh
+; Add 'NOPASSWD: /bin/trizen -Sy' on sudoers.conf
+exec-if = sudo trizen -Sy
+interval = 3600
+
+format-underline = ${colors.primary}
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/scripts/spotify.sh get
+exec-if = ~/.config/polybar/scripts/spotify.sh status
+interval = 1
+
+format-underline = ${colors.primary}
+click-left = playerctl -p spotify play-pause
+
+[module/nextcloud]
+type = custom/script
+exec = echo ""
+exec-if = ps -ef | grep -v grep | grep nextcloud
+interval = 360
+
+format-underline = ${colors.primary}
+click-left = /usr/bin/nextcloud
+
+[module/keybase]
+type = custom/script
+exec = echo ""
+exec-if = ps -ef | grep -v grep | grep Keybase
+interval = 360
+
+format-underline = ${colors.primary}
+click-left = /usr/bin/run_keybase 
+
+[module/network]
+type = custom/script
+exec = echo ""
+exec-if = ps -ef | grep -v grep | grep NetworkManager
+interval = 360
+
+format-underline = ${colors.primary}
+click-left = /usr/bin/nm-connection-editor
