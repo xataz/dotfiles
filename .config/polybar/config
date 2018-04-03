@@ -9,7 +9,7 @@
 
 [colors]
 background = #bb383C4A
-background-alt = #111111
+background-alt = #222
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #5294e2
@@ -38,9 +38,9 @@ font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=9;1"
 modules-left = i3
 modules-center =  date 
-modules-right = spotify updates volume nextcloud keybase network
-tray-position =
-tray-padding = 5
+modules-right = spotify updates volume
+tray-position = right
+tray-padding = 2
 tray-transparent = true
 tray-background = ${colors.background}
 tray-detached = false
@@ -72,10 +72,10 @@ font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=9;1"
 modules-left = i3
 modules-center =  date 
-modules-right = spotify updates xbacklight volume battery nextcloud keybase network
-tray-position =
-tray-padding = 5
-tray-transparent = false
+modules-right = spotify updates xbacklight volume battery
+tray-position = right
+tray-padding = 2
+tray-transparent = true
 tray-background = ${colors.background}
 tray-detached = false
 tray-offset-x = 0
@@ -245,29 +245,3 @@ interval = 1
 format-underline = ${colors.primary}
 click-left = playerctl -p spotify play-pause
 
-[module/nextcloud]
-type = custom/script
-exec = echo ""
-exec-if = ps -ef | grep -v grep | grep nextcloud
-interval = 360
-
-format-underline = ${colors.primary}
-click-left = /usr/bin/nextcloud
-
-[module/keybase]
-type = custom/script
-exec = echo ""
-exec-if = ps -ef | grep -v grep | grep Keybase
-interval = 360
-
-format-underline = ${colors.primary}
-click-left = /usr/bin/run_keybase 
-
-[module/network]
-type = custom/script
-exec = echo ""
-exec-if = ps -ef | grep -v grep | grep NetworkManager
-interval = 360
-
-format-underline = ${colors.primary}
-click-left = /usr/bin/nm-connection-editor

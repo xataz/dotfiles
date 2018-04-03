@@ -186,10 +186,11 @@ gaps inner 15
 
 exec_always --no-startup-id "killall polybar; polybar -r desktop"
 exec_always --no-startup-id "killall dunst; dunst"
+exec_always --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper.jpg"
+exec_always --no-startup-id "nm-applet"
 exec --no-startup-id compton
 exec --no-startup-id "export KEYBASE_START_UI=hideWindow; run_keybase"
 exec --no-startup-id "nextcloud"
-exec --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper.jpg"
 exec --no-startup-id "eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) && export SSH_AUTH_SOCK"
 
 # Move windows

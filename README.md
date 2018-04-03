@@ -6,7 +6,7 @@
 * cmus
 * otf-font-awesome
 * termite
-* vim
+* vim (with vundle)
 * compton
 * zsh
 * gnome-keyring (libsecret, libgnome-keyring)
